@@ -1,7 +1,27 @@
 //! Customizes the rendering of the elements.
-use std::{fmt, io};
+use std::fmt;
+#[cfg(any(
+    feature = "confirm",
+    feature = "editor",
+    feature = "input",
+    feature = "multi_select",
+    feature = "password",
+    feature = "select",
+    feature = "sort",
+))]
+use std::io;
 
-use console::{style, Style, StyledObject, Term};
+#[cfg(any(
+    feature = "confirm",
+    feature = "editor",
+    feature = "input",
+    feature = "multi_select",
+    feature = "password",
+    feature = "select",
+    feature = "sort",
+))]
+use console::Term;
+use console::{style, Style, StyledObject};
 
 /// Implements a theme for dialoguer.
 pub trait Theme {
@@ -546,6 +566,15 @@ impl Theme for ColorfulTheme {
 }
 
 /// Helper struct to conveniently render a theme ot a term.
+#[cfg(any(
+    feature = "confirm",
+    feature = "editor",
+    feature = "input",
+    feature = "multi_select",
+    feature = "password",
+    feature = "select",
+    feature = "sort",
+))]
 pub(crate) struct TermThemeRenderer<'a> {
     term: &'a Term,
     theme: &'a dyn Theme,
@@ -554,6 +583,15 @@ pub(crate) struct TermThemeRenderer<'a> {
     prompts_reset_height: bool,
 }
 
+#[cfg(any(
+    feature = "confirm",
+    feature = "editor",
+    feature = "input",
+    feature = "multi_select",
+    feature = "password",
+    feature = "select",
+    feature = "sort",
+))]
 impl<'a> TermThemeRenderer<'a> {
     pub fn new(term: &'a Term, theme: &'a dyn Theme) -> TermThemeRenderer<'a> {
         TermThemeRenderer {

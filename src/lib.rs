@@ -20,10 +20,18 @@
 pub use console;
 #[cfg(feature = "editor")]
 pub use edit::Editor;
-pub use prompts::{
-    confirm::Confirm, input::Input, multi_select::MultiSelect, password::Password, select::Select,
-    sort::Sort,
-};
+#[cfg(feature = "confirm")]
+pub use prompts::confirm::Confirm;
+#[cfg(feature = "input")]
+pub use prompts::input::Input;
+#[cfg(feature = "multi_select")]
+pub use prompts::multi_select::MultiSelect;
+#[cfg(feature = "password")]
+pub use prompts::password::Password;
+#[cfg(feature = "select")]
+pub use prompts::select::Select;
+#[cfg(feature = "sort")]
+pub use prompts::sort::Sort;
 pub use validate::Validator;
 
 #[cfg(feature = "editor")]
